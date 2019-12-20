@@ -15,6 +15,6 @@ module.exports = {
       "**/*.spec.ts"
     ],
     "moduleNameMapper": {
-      "^~/(.+)": "<rootDir>/src/$1"
+      "^~/(.+)$": "<rootDir>/src/$1"
     }
 };
