@@ -1,4 +1,4 @@
-import IUser from '~/domain/IUser'
+import IUser from '~/domain/IMetrics'
 
 export default class User {
   private readonly _name: string
