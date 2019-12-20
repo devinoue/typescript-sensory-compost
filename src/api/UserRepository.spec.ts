@@ -1,22 +1,23 @@
-import UserRepository from '~/api/UserRepository.ts'
-import IUser from '~/domain/IUser'
-import User from '~/domain/User'
+import IMetrics from '~/domain/IMetrics'
 
-const testArray: IUser[] = [{ name: 'yamada', age: 24 }]
+import Metrics from '~/domain/Metrics'
 
-jest.mock('userRepository', () => ({
-  get: async (): Promise<User[]> => {
-    return new Promise(resolve => {
-      resolve(testArray.map((obj: IUser): User => new User(obj)))
-    })
-  },
-}))
+import UserRepository from '~/api/UserRepository'
+
+const testArray: IMetrics[] = [{ name: 'yamada', age: 24 }]
 
 describe('', () => {
-  test('should ', () => {
-    // const expectedResult: string = 'result'
+  test('戻ってくるMetricsオブジェクトが等しい', async () => {
     const userRepository = new UserRepository()
 
-    expect(userRepository.get()).toBe(testArray)
+    userRepository.get = jest
+      .fn()
+      .mockResolvedValue(
+        testArray.map((obj: IMetrics): Metrics => new Metrics(obj)),
+      )
+
+    expect(await userRepository.get()).toEqual(
+      testArray.map((obj: IMetrics): Metrics => new Metrics(obj)),
+    )
   })
 })
