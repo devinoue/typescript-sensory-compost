@@ -1,8 +1,5 @@
-/**
- * 本来はDomain層に置く
- */
-import User from './User'
+import Metrics from './Metrics'
 
 export default interface IRepository {
-  callApi(): Promise<User[]>
+  get(): Promise<Metrics[]>
 }
